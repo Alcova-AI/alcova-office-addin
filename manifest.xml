@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides/1.0" xsi:type="MailApp">
+  <Id>46182552-849a-4add-bbe6-0777f1b1ebeb</Id>
+  <Version>1.0.0.0</Version>
+  <ProviderName>Alcova</ProviderName>
+  <DefaultLocale>en-AU</DefaultLocale>
+  <DisplayName DefaultValue="Alcova"/>
+  <Description DefaultValue="Alcova Add-in to identify sensitive data in the email"/>
+  <IconUrl DefaultValue="https://portal.alcova.ai/assets/icon-64.png"/>
+  <HighResolutionIconUrl DefaultValue="https://portal.alcova.ai/assets/icon-128.png"/>
+  <SupportUrl DefaultValue="https://alcova.ai/help"/>
+  <AppDomains>
+    <AppDomain>https://portal.alcova.ai</AppDomain>
+    <AppDomain>https://api.alcova.ai</AppDomain>
+  </AppDomains>
+  <Hosts>
+    <Host Name="Mailbox"/>
+  </Hosts>
+  <Requirements>
+    <Sets>
+      <Set Name="Mailbox" MinVersion="1.5"/>
+    </Sets>
+  </Requirements>
+  <FormSettings>
+    <Form xsi:type="ItemRead">
+      <DesktopSettings>
+        <SourceLocation DefaultValue="https://portal.alcova.ai/outlook"/>
+        <RequestedHeight>250</RequestedHeight>
+      </DesktopSettings>
+    </Form>
+  </FormSettings>
+  <!-- <Permissions>ReadWriteItem</Permissions> -->
+  <Permissions>ReadWriteMailbox</Permissions>
+  <Rule xsi:type="RuleCollection" Mode="Or">
+    <!-- <Rule xsi:type="ItemIs" ItemType="Message" FormType="Read"/> -->
+    <Rule xsi:type="ItemIs" ItemType="Message" FormType="Edit" />
+  </Rule>
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides" xsi:type="VersionOverridesV1_0">
+    <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides/1.1" xsi:type="VersionOverridesV1_1">
+      <Requirements>
+        <bt:Sets DefaultMinVersion="1.12">
+          <bt:Set Name="Mailbox"/>
+        </bt:Sets>
+      </Requirements>
+      <Hosts>
+        <Host xsi:type="MailHost">
+          <Runtimes>
+            <Runtime resid="Commands.Url">
+              <Override type="javascript" resid="JSRuntime.Url"/>
+            </Runtime>
+          </Runtimes>
+
+          <DesktopFormFactor>
+            <!-- FunctionFile specifies the location of a JavaScript file that
+              contains function definitions for event handlers referenced in the manifest -->
+            <FunctionFile resid="Commands.Url" />
+            <ExtensionPoint xsi:type="MessageComposeCommandSurface">
+              <OfficeTab id="TabDefault">
+                <Group id="msgComposeGroup">
+                  <Label resid="GroupLabel"/>
+                  <Control xsi:type="Button" id="msgComposeOpenPaneButton">
+                    <Label resid="TaskpaneButton.Label"/>
+                    <Supertip>
+                      <Title resid="TaskpaneButton.Label"/>
+                      <Description resid="TaskpaneButton.Tooltip"/>
+                    </Supertip>
+                    <Icon>
+                      <bt:Image size="16" resid="Icon.16x16"/>
+                      <bt:Image size="32" resid="Icon.32x32"/>
+                      <bt:Image size="80" resid="Icon.80x80"/>
+                    </Icon>
+                    <Action xsi:type="ShowTaskpane">
+                      <SourceLocation resid="Taskpane.Url"/>
+                      <SupportsPinning>true</SupportsPinning>
+                    </Action>
+                  </Control>
+                </Group>
+              </OfficeTab>
+            </ExtensionPoint>
+
+            <ExtensionPoint xsi:type="LaunchEvent">
+              <LaunchEvents>
+                <LaunchEvent Type="OnMessageSend" FunctionName="onMessageSendHandler" SendMode="SoftBlock"/>
+                <LaunchEvent Type="OnNewMessageCompose" FunctionName="onMessageComposeHandler"/>
+              </LaunchEvents>
+              <!-- Identifies the runtime to be used by the add-in (also referenced by the Runtime element). -->
+              <SourceLocation resid="Commands.Url"/>
+            </ExtensionPoint>
+          </DesktopFormFactor>
+        </Host>
+      </Hosts>
+      <Resources>
+        <bt:Images>
+          <bt:Image id="Icon.16x16" DefaultValue="https://portal.alcova.ai/assets/icon-16.png"/>
+          <bt:Image id="Icon.32x32" DefaultValue="https://portal.alcova.ai/assets/icon-32.png"/>
+          <bt:Image id="Icon.80x80" DefaultValue="https://portal.alcova.ai/assets/icon-80.png"/>
+        </bt:Images>
+        <bt:Urls>
+          <bt:Url id="Commands.Url" DefaultValue="https://portal.alcova.ai/outlook/commands"/>
+          <bt:Url id="Taskpane.Url" DefaultValue="https://portal.alcova.ai/outlook"/>
+        </bt:Urls>
+        <bt:ShortStrings>
+          <bt:String id="GroupLabel" DefaultValue="Alcova Add-in"/>
+          <bt:String id="TaskpaneButton.Label" DefaultValue="Show Taskpane"/>
+          <bt:String id="Alcova.GetStarted.Title" DefaultValue="Alcova add-in has loaded successfully." />
+        </bt:ShortStrings>
+        <bt:LongStrings>
+          <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Opens a task pane."/>
+          <bt:String id="Alcova.GetStarted.Description" DefaultValue="Choose Open Add-in, then Connect to Office 365 to get started." />
+        </bt:LongStrings>
+      </Resources>
+
+      <WebApplicationInfo>
+        <Id>7db7766b-38bb-4981-a7cf-db2bd974b28e</Id>
+        <Resource>api://portal.alcova.ai/7db7766b-38bb-4981-a7cf-db2bd974b28e</Resource>
+        <Scopes>
+          <Scope>openid</Scope>
+          <Scope>email</Scope>
+          <Scope>user.read</Scope>
+          <Scope>profile</Scope>
+          <Scope>offline_access</Scope>
+          <Scope>User.Read</Scope>
+        </Scopes>
+      </WebApplicationInfo>
+
+    </VersionOverrides>
+  </VersionOverrides>
+</OfficeApp>
