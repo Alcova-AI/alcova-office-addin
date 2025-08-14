@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides/1.0" xsi:type="MailApp">
   <Id>46182552-849a-4add-bbe6-0777f1b1ebeb</Id>
-  <Version>1.0.0.4</Version>
+  <Version>1.0.0.5</Version>
   <ProviderName>Alcova</ProviderName>
   <DefaultLocale>en-AU</DefaultLocale>
   <DisplayName DefaultValue="Alcova" />
@@ -78,7 +78,7 @@
 
             <ExtensionPoint xsi:type="LaunchEvent">
               <LaunchEvents>
-                <LaunchEvent Type="OnMessageSend" FunctionName="onMessageSendHandler" SendMode="SoftBlock" />
+                <LaunchEvent Type="OnMessageSend" FunctionName="onMessageSendHandler" SendMode="PromptUser" />
                 <LaunchEvent Type="OnNewMessageCompose" FunctionName="onMessageComposeHandler" />
               </LaunchEvents>
               <!-- Identify the runtime to be used (also referenced by the Runtime element). -->
@@ -95,7 +95,7 @@
         </bt:Images>
         <bt:Urls>
           <bt:Url id="Commands.Url" DefaultValue="https://portal.alcova.ai/outlook/commands" />
-          <bt:Url id="WebViewRuntime.Url" DefaultValue="https://portal.alcova.ai/outlook/commands#v1.0.0.4" />
+          <bt:Url id="WebViewRuntime.Url" DefaultValue="https://portal.alcova.ai/outlook/commands#v1.0.0.5" />
           <!-- Entry needed for classic Outlook on Windows. -->
           <bt:Url id="JSRuntime.Url" DefaultValue="https://portal.alcova.ai/_app/immutable/main.js" />
           <bt:Url id="Taskpane.Url" DefaultValue="https://portal.alcova.ai/outlook" />
