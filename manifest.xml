@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides/1.0" xsi:type="MailApp">
   <Id>46182552-849a-4add-bbe6-0777f1b1ebeb</Id>
-  <Version>1.0.0.6</Version>
+  <Version>1.0.0.7</Version>
   <ProviderName>Alcova</ProviderName>
   <DefaultLocale>en-AU</DefaultLocale>
   <DisplayName DefaultValue="Alcova" />
@@ -36,7 +36,7 @@
   <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides" xsi:type="VersionOverridesV1_0">
     <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides/1.1" xsi:type="VersionOverridesV1_1">
       <Requirements>
-        <bt:Sets DefaultMinVersion="1.15">
+        <bt:Sets DefaultMinVersion="1.10">
           <bt:Set Name="Mailbox" />
         </bt:Sets>
       </Requirements>
@@ -94,7 +94,7 @@
         </bt:Images>
         <bt:Urls>
           <bt:Url id="Commands.Url" DefaultValue="https://portal.alcova.ai/outlook/commands" />
-          <bt:Url id="WebViewRuntime.Url" DefaultValue="https://portal.alcova.ai/outlook/commands#v1.0.0.6" />
+          <bt:Url id="WebViewRuntime.Url" DefaultValue="https://portal.alcova.ai/outlook/commands#v1.0.0.7" />
           <!-- Entry needed for classic Outlook on Windows. -->
           <bt:Url id="JSRuntime.Url" DefaultValue="https://portal.alcova.ai/_app/immutable/main.js" />
           <bt:Url id="Taskpane.Url" DefaultValue="https://portal.alcova.ai/outlook" />
